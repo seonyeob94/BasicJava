@@ -19,6 +19,10 @@ public class ScanUtil {
 
 	}
 	
+	public static int select() {
+		System.out.println("선택 : ");
+		return nextInt();
+	}
 	
 	public static int nextInt(String message) {
 		System.out.println(message);

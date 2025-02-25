@@ -8,11 +8,12 @@ public class Test {
 		System.out.println(a.substring(6,a.indexOf("배우")));
 		System.out.println(a.indexOf("자"));
 		
-	
+		
 
 		
 		
 		System.out.println(answer);
+		
 
 	}
 }

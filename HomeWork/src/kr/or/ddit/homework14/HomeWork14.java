@@ -54,18 +54,34 @@ public class HomeWork14 {
 		
 		
 		
-		String[] lines= str.split("\r\n");
-		int i=0;
-		for(String line : lines) {
-			if(line.contains("</em>")) {
-//				System.out.println(line.substring(line.indexOf("</em>"),line.indexOf("</a>")).replace("</em>",""));
-			}
-//			System.out.println(i+++line);
-			
-	}
+//		String[] lines= str.split("\r\n");
+//		int i=0;
+//		for(String line : lines) {
+//			if(line.contains("</em>")) {
+//				System.out.println(	line.substring(line.indexOf("</em>")+5,line.indexOf("</a>")));
+//			
+//			}
+////			System.out.println(i+++line);
+//			
+//	}
 		
-		
-	
+//		String[] lines = str.split("\\R");
+//		int i = 0;
+//		
+//		for(String line : lines) {
+//			if(line.contains("</em>") && line.contains("</a>")) {
+//			   int start = line.indexOf("</em>") + 5;
+//			   int end = line.indexOf("</a>");
+//			   
+//			   if(end > start) {
+//				   String extractedText = line.substring(start, end).trim();
+//				   System.out.println(extractedText);
+//			   
+//			   }   
+//			}	
+//		}
+//		
+//	
 		
 		
 		
@@ -77,9 +93,11 @@ public class HomeWork14 {
 
 			String[] lines11= line.split("</em>");
 			System.out.println(lines11[1].replace("</a>", ""));
+		 }
 		}
-			
-	  }
+		
+		//웹에서 문자 가져오기
+		//완료된 데이터 디비 저장하기.
 
 		
 		
@@ -87,6 +105,7 @@ public class HomeWork14 {
 		
 		
 		
+
 	}
- 
 }
+

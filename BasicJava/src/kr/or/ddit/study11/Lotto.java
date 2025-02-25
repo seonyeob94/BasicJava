@@ -103,7 +103,7 @@ public class Lotto {
 		
 		
 		for(int i=0; i<lotto.length; i++) {
-			int ran = new Random().nextInt(8)+1;
+			int ran = new Random().nextInt(45)+1;
 			lotto[i]=ran;
 			for (int j =0; j<i;j++) {
 				if(lotto[j]==ran) {

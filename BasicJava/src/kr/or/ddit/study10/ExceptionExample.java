@@ -9,10 +9,10 @@ public class ExceptionExample {
 	}
 	
 	public void process() {
-//		method1();
+		method1();
 //		method2();
 //		method3();
-		method4();
+//		method4();
 	}
 	
 	public void method4() {
