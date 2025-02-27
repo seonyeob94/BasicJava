@@ -20,6 +20,7 @@ public class Homework17 {
 			
 			int lastDayMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
+			
 			System.out.println("\t\t\t"+cal.get(Calendar.YEAR)+"년 "+(cal.get(Calendar.MONTH)+1)+"월");
 
 			System.out.println("===================================================");
