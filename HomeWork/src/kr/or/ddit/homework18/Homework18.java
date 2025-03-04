@@ -26,10 +26,11 @@ public class Homework18 {
 //		System.out.println("salary 최대값 : "+max);
 //		int min = minSalary();
 //		System.out.println("salary 최소값 : "+min);
-		String empId = ScanUtil.next("empId(203,122,115,137,200) 입력 :");
-		selectOne(empId);
-		String dept = ScanUtil.next("dept(10,30,40,50) 입력 : ");
-		selectDept(dept);
+//		String empId = ScanUtil.next("empId(203,122,115,137,200) 입력 :");
+//		selectOne(empId);
+//		String dept = ScanUtil.next("dept(10,30,40,50) 입력 : ");
+//		selectDept(dept);
+		sumDept();
 	}
 	
 	
@@ -37,34 +38,52 @@ public class Homework18 {
 		//부서별 월급 총합을 구하고 출력하기
 		Map<Integer, Integer> sumMap = new HashMap();
 		
+		
 		// containskey 활용
+		
+		for(int i=0;i<list.size();i++) {
+			Map<String, Object> map = list.get(i);
+			int dept = (int)map.get("DEPT");
+			int sal = (int)map.get("SALARY");
+			
+			if(sumMap.containsKey(dept)) sal  += sumMap.get(dept);
+			sumMap.put(dept, sal);
+			
+		}
+		
+//		Set<Integer> keySet = sumMap.keySet();
+//		Iterator<Integer> it = keySet.iterator();
+		
+		Iterator<Integer> it = sumMap.keySet().iterator();
+		System.out.println("부서\t월급 총합");
+		while(it.hasNext()) {
+			int dept = it.next();
+			int sal = sumMap.get(dept);
+			System.out.println(dept+"\t"+sal);
+		}
+		
+		
 	}
 	
-	public void selectDept(String dept) {
+	public void selectDept(int dept) {
 		//dept에 해당하는 사람 정보 출력하기
 		
 	for(int i=0; i<list.size();i++) {
-			
+		Map<String, Object> map =list.get(i);
 
-			Map<String, Object> map =list.get(i);
-			if(map.containsKey("dept") && map.get("dept").equals(dept)) {
+			if(map.containsKey("DEPT") && map.get("DEPT").equals(dept)) {
 				
-				List<Map<String,Object>> list1;
+				Set<String> keySet = map.keySet();
+				Iterator<String> it = keySet.iterator();
 				
-//				Map<String, Object> map1 =list.get(i);
-//				
-//				
-//				Set<String> keySet = map1.keySet();
-//				Iterator<String> it = keySet.iterator();
-//				
-//				while(it.hasNext()) {
-//					String key = it.next();
-//					Object value = map1.get(key);
-//				
-//					System.out.println(key+" : "+value);
-//				
-//				
-//				}	
+				while(it.hasNext()) {
+					String key = it.next();
+					Object value = map.get(key);
+				
+					System.out.println(key+" : "+value);
+				
+				
+				}	
 			
 			}
 	
@@ -144,14 +163,21 @@ public class Homework18 {
 		System.out.println("전체 출력");
 		for(int i=0; i<list.size();i++) {
 		Map<String, Object> map =list.get(i);
-		Set keySet = map.keySet();
-		Iterator<String> it = keySet.iterator();
-		while(it.hasNext()) {
-			String key = it.next();
-			Object value = map.get(key);
-			System.out.println(key+" : "+value);
-		}	
-		System.out.println("===================");
+		
+		String id = (String)map.get("empId");
+		String ename = (String)map.get("ENAME");
+		int dept = (int)map.get("DEPT");
+		int salary = (int)map.get("SALARY");
+		System.out.println(id+"\t"+ename+"\t"+dept+"\t"+salary);
+		
+//		Set keySet = map.keySet();
+//		Iterator<String> it = keySet.iterator();
+//		while(it.hasNext()) {
+//			String key = it.next();
+//			Object value = map.get(key);
+//			System.out.println(key+" : "+value);
+//		}	
+//		System.out.println("===================");
 	  }
 	}
 	

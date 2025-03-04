@@ -1,6 +1,7 @@
 package kr.or.ddit.study13;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import kr.or.ddit.util.ScanUtil;
 
@@ -16,7 +17,29 @@ public class ArrayListExample {
 //		method2();
 //		method3();
 //		method4();
-		method5();
+//		method5();
+		method6();
+	}
+	
+	public void method6() {
+		
+		int n = 12;
+		List<Integer> list = new ArrayList();
+		
+		for(int i=2; i<=n;i++) {
+			if(n%i==0) {
+				while(n%i==0) {
+					n/=i;
+				}
+				list.add(i);
+			}
+		}
+		
+		int[] answer = new int[list.size()];
+		for(int i =0; i<list.size(); i++) answer[i]=list.get(i);
+		
+		
+		
 	}
 	
 	public void method5() {
@@ -59,6 +82,7 @@ public class ArrayListExample {
 		
 		// 제네닉 <String>
 		// 컬렉션의 타입을 지정 함   
+		// 제네닉을 안쓰면 기본이 오브젝트여서 강제 캐스팅을 해야하는 불편함이 있다
 		ArrayList<Integer> list = new ArrayList();
 		
 		list.add(1);
