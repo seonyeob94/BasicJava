@@ -1,0 +1,35 @@
+package dao;
+
+import java.util.List;
+
+import util.JDBCUtil;
+import vo.MemberVo;
+
+public class MemberDao {
+	private static MemberDao instance;
+
+	private MemberDao() {
+
+	}
+
+	public static MemberDao getInstance() {
+		if (instance == null) {
+			instance = new MemberDao();
+		}
+		return instance;
+	}
+
+	JDBCUtil jdbc = JDBCUtil.getInstance();
+	
+	public MemberVo login(List<Object> param ) {
+		String sql =
+				  "SELECT *\r\n"
+				+ "FROM JAVA_MEMBER\r\n"
+				+ "WHERE ID = ?\r\n"
+				+ "AND PASS = ?\r\n"
+				+ "AND DELYB = 'N'";
+		
+		return jdbc.selectOne(sql, param, MemberVo.class);
+	}
+
+}

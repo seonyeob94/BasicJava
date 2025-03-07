@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+
 import kr.or.ddit.util.ScanUtil;
 
 public class HomeWork19 {
@@ -26,8 +27,37 @@ public class HomeWork19 {
 		//데이터 출력 해보기
 //		printData();
 		parkTime();
+//		partTime2();
 		
 	}
+	
+	
+	public void partTime2() {
+		Map<String, Integer> sumMap = new HashMap<String, Integer>();
+		
+		Map<String, Integer> temp = new HashMap<String, Integer>();
+	
+		for(Map<String, String>map : list) {
+			String num = map.get("차량번호");
+			String recod = map.get("내역");
+			String time = map.get("time");
+			
+			if(recod.equals("입차")) {
+				int t = getTime(time);
+				temp.put(num, t);
+			}
+			if(recod.equals("출차")) {
+				int park = getTime(num) -temp.remove(num);
+				if(sumMap.containsKey(num))	park+=sumMap.get(num);
+				sumMap.put(num, park);
+				
+			}
+			
+		}
+	
+	
+	}
+	
 	
 	public void parkTime() {
 		// 차량 번호별 주차시간 계산하기
@@ -44,7 +74,7 @@ public class HomeWork19 {
 			String carNum = it.next();
 			int partTime = parkTimeDetail(carNum);
 			int payMoney = payMony(partTime);
-			System.out.println(carNum+"\t"+partTime+"\t"+payMoney);
+			System.out.println(carNum+"\t"+partTime+"분"+"\t"+payMoney+"원");
 		}
 	}
 	
@@ -61,6 +91,20 @@ public class HomeWork19 {
 	
 	public int parkTimeDetail(String carNum) {
 		// 한 차량의 주차시간
+//		int parkTime = 0;
+//		int temp=0;
+//		for(Map<String, String> map :list) {
+//
+//			String carNum2 = map.get("차량번호");
+//			String recod = map.get("내역");
+//			String time = map.get("time");
+//			if(!carNum.equals(carNum2)) continue;
+//			
+//			if(recod.equals("입차"))
+//		}
+		
+		
+		
 		int result = 0;
 		for(int i=0;i<list.size();i++) {
 			Map<String, String> map = list.get(i);
@@ -97,15 +141,19 @@ public class HomeWork19 {
 		System.out.println("전체 데이터 출력");
 		System.out.println("시간\t차량번호\t내역");
 		System.out.println("-------------------------");
-		for(int i=0;i<list.size();i++) {
-			Map<String, String> map = list.get(i);
-			String time = (String)map.get("time");
-			String carNum = (String)map.get("차량번호");
-			String recod = (String)map.get("내역");
-			System.out.println(time+"\t"+carNum+"\t"+recod);
-			
-		}
-		System.out.println("-------------------------");
+//		for(int i=0;i<list.size();i++) {
+//			Map<String, String> map = list.get(i);
+//			String time = (String)map.get("time");
+//			String carNum = (String)map.get("차량번호");
+//			String recod = (String)map.get("내역");
+//			System.out.println(time+"\t"+carNum+"\t"+recod);
+//			
+//		}
+//		System.out.println("-------------------------");
+		
+		
+		
+		
 	}
 	
 	public void insertData() {

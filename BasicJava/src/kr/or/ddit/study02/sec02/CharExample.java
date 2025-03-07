@@ -24,6 +24,22 @@ public class CharExample {
 		
 		
 		System.out.println("안녕"+c3);
-	
+		
+		String c5 = "abcAsDe";
+		String c6="가";
+//		for(int i=0;i<c5.length();i++) {
+//			if(c5.charAt(i)>='a'&&c5.charAt(i)<='z') {
+//			c6+= (char)(c5.charAt(i)-32);
+//		}
+//		else if(c5.charAt(i)>='A'&&c5.charAt(i)<='Z') {
+//			c6+= (char)(c5.charAt(i)+32);
+//		}
+//
+//	}
+		char c8;
+		c8=c3;
+		c6+=c8;
+		System.out.println(c6);
+		
 	}
 }

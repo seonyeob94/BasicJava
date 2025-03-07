@@ -16,7 +16,7 @@ public class DateExample {
 	
 	public void process() {
 //		method1();
-//		method2();
+		method2();
 //		method3();
 //		method4();
 //		method5();
@@ -24,7 +24,7 @@ public class DateExample {
 //		method7();
 //		method8();
 //		method9();
-		method10();
+//		method10();
 		
 	}
 	
@@ -135,9 +135,9 @@ public class DateExample {
 		long hour=min*60;
 		long day=hour*24;
 
-		long a=ScanUtil.nextInt("더할 일수 : ");
+		long add=ScanUtil.nextInt("더할 일수 : ");
 		Date d1 = new Date();
-		long time = d1.getTime()+day*a;
+		long time = d1.getTime()+day*add;
 		Date d2 = new Date(time);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
@@ -176,9 +176,9 @@ public class DateExample {
 		long hour=min*60;
 		long day=hour*24;
 		
-		long a=ScanUtil.nextInt("날짜입력");
+		long add=ScanUtil.nextInt("날짜입력");
 		Date d3 = new Date();
-		long time = d3.getTime()+day*a;
+		long time = d3.getTime()+day*add;
 		
 		Date d4 = new Date(time);
 		
@@ -234,24 +234,25 @@ public class DateExample {
 	
 	public void method2() {
 		// 객체가 만들어진 시간(컴퓨터)을 가져옴.
+		
 		int cnt = 1000000;
 		Date d1 = new Date();
 		
 		for(int i=0;i<cnt;i++) {
 			
 		}
-		
 		Date d2 = new Date();
 		long time = d2.getTime()-d1.getTime();
 		System.out.println(time+"ms");
 		for(int i=0;i<cnt;i++) {
-			if(debug) System.out.print(i);
+			if(debug) System.out.println(i);
 		}
 		if(debug) System.out.println();
-		Date d3 = new Date();
-		long time2 = d3.getTime()-d2.getTime();
+		Date d3= new Date();
+		long time2= d3.getTime()-d2.getTime();
 		
 		System.out.println(time2+"ms");
+		
 		
 		
 		

@@ -74,7 +74,7 @@ public class CalendarExample {
 		Calendar cal = Calendar.getInstance();
 		//날짜 연산등 편리성을 위한 클래스
 		
-		cal.add(Calendar.YEAR, -1);
+		cal.add(Calendar.YEAR, 1);
 		Date d = cal.getTime();
 		System.out.println(d);
 		
