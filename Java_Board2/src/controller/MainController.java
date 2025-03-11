@@ -97,6 +97,7 @@ public class MainController {
 		List<Object> param = new ArrayList();
 		param.add(boardNo);
 		BoardVo board = boardService.detail(param);
+		
 		String title = board.getTitle();
 		String content = board.getContent();
 		String name = board.getName();

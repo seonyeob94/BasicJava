@@ -14,9 +14,10 @@ public class CharExample {
 		System.out.println(c2);
 		
 		char c3 = '가';
-		
+		int a=11;
 		String c4="안녕하세요";
-		
+		c4+=(char)(89+a);
+		System.out.println(c4);
 		
 		int i3 = c3 + 0;
 		
@@ -38,8 +39,10 @@ public class CharExample {
 //	}
 		char c8;
 		c8=c3;
-		c6+=c8;
+		c6+=c8+1;
 		System.out.println(c6);
+		
+		System.out.println();
 		
 	}
 }

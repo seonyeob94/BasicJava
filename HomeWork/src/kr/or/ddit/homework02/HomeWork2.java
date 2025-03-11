@@ -8,9 +8,9 @@ public class HomeWork2 {
 	public static void main(String[] args) {
 		HomeWork2 obj = new HomeWork2();
 //		obj.method1();
-//		obj.mehtod2();
+		obj.mehtod2();
 //		obj.mehtod3();
-		obj.mehtod4();
+//		obj.mehtod4();
 //		obj.mehtod5();
 	}
 	
