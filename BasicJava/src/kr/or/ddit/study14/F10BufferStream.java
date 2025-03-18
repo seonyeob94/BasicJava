@@ -13,6 +13,7 @@ public class F10BufferStream {
 		// 속도가 느리다.
 		// 따라서 한번 접촉할때 많은 값을 가져오는 것이 속도, 물리적으로 유리하다.
 		// 기본적으로 8192 바이트 크기를 가지며 버퍼 사이즈를 수정 할 수도 있다
+		// 보조스트림이라고 불린다
 		
 		FileInputStream fis = new FileInputStream("out3.txt");
 		

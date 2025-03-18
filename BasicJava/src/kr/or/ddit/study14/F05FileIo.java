@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 public class F05FileIo {
 	public static void main(String[] args) {
+	
 		try {
 			FileInputStream fis = new FileInputStream("file/f01/f02/test.txt");
 			byte[] outSrc = null;
