@@ -6,6 +6,10 @@ public class ScanUtil   {
 	// 스캐너를 손쉽게 사용할 수 있는 static 메서드를 가지고있음
 	static Scanner sc = new Scanner(System.in);
 	
+	public static int select() {
+		return nextInt("선택 : ");
+	}
+	
 	public static String nextLine(String print) {
 		System.out.print(print);
 		return nextLine();
