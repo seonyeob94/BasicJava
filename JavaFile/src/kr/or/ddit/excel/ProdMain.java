@@ -37,7 +37,7 @@ public class ProdMain {
 		 File prodFile = new File("excel/prod.xlsx");
 		 
 		 if(prodFile.exists()) prodList= readProdExcel(prodFile);
-		else addExcel();
+		else cartList = new ArrayList<Cart>();
 	}
 	
 	public void addExcel(){
@@ -45,14 +45,13 @@ public class ProdMain {
 		Sheet sheet = workbook.createSheet();
 		
 		Row row = sheet.createRow(0);
-		int cellNum =0;
 		Cell c1 = row.createCell(0);
 		Cell c2 = row.createCell(1);
 		Cell c3 = row.createCell(2);
 
 		c1.setCellValue("상품번호");
-		c2.setCellValue("이름");
-		c3.setCellValue("나이");
+		c2.setCellValue("상품명");
+		c3.setCellValue("가격");
 		
 		FileOutputStream fos;
 		try {
@@ -112,7 +111,8 @@ public class ProdMain {
 				
 				
 				int sel2 = ScanUtil.select();
-				if (sel2 == 4) {
+				if(sel2 == 1)
+				if(sel2 == 4) {
 					saveExcel(prodList);
 					sel=0;
 				}
@@ -121,6 +121,8 @@ public class ProdMain {
 		}
 	}
 	boolean autoSave = true;
+	
+	
 	
 	public void prodUpdate(List<Prod> prodList) {
 		printList(prodList);
@@ -221,7 +223,7 @@ public class ProdMain {
 	
 	public void printList(List<Prod> prodList) {
 		if (prodList == null || prodList.isEmpty()) {
-	        System.out.println("No products available.");
+	        System.out.println("상품이 존재하지 않습니다.");
 	        return;
 	    }
 		
