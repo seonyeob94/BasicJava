@@ -51,6 +51,17 @@ public class ProdMain1 {
 		try {
 			workbook = new XSSFWorkbook(cartFile);
 			Sheet sheet = workbook.getSheetAt(0);
+			
+			int rows = sheet.getPhysicalNumberOfRows();
+			for(int i=1;i<rows;i++) {
+				Cart1 cart = new Cart1();
+				cart.setCartNo((int)sheet.getRow(i).getCell(0).getNumericCellValue());
+				cart.setProdNo((int)sheet.getRow(i).getCell(1).getNumericCellValue());
+				cart.setCnt((int)sheet.getRow(i).getCell(2).getNumericCellValue());
+				cartList.add(cart);
+			}
+			
+			workbook.close();
 		} catch (InvalidFormatException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,6 +95,44 @@ public class ProdMain1 {
 		
 		
 		return prodList;
+		
+	}
+	
+	private void writeCartExcel() {
+		File carFile = new File("excel/cart2.xlsx");
+		FileOutputStream fos = null;
+		
+		try {
+			fos = new FileOutputStream(carFile);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Workbook workbook = new XSSFWorkbook();
+		Sheet sheet = workbook.createSheet();
+		
+		Row head = sheet.createRow(0);
+		head.createCell(0).setCellValue("카트번호");
+		head.createCell(1).setCellValue("상품번호");
+		head.createCell(2).setCellValue("수량");
+		
+		for(int i=0;i<cartList.size();i++) {
+			Cart1 cart = cartList.get(i);
+			sheet.createRow(i+1);
+			sheet.getRow(i+1).createCell(0).setCellValue(cart.getCartNo());
+			sheet.getRow(i+1).createCell(1).setCellValue(cart.getProdNo());
+			sheet.getRow(i+1).createCell(2).setCellValue(cart.getCnt());
+		}
+		
+		try {
+			workbook.write(fos);
+			fos.flush();
+			fos.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -157,6 +206,9 @@ public class ProdMain1 {
 				System.out.println("4. 홈");
 				
 				int sel2 = ScanUtil.select();
+				if(sel2 == 1) cartBuy();
+				if(sel2 == 2) printCartList();
+				if(sel2 == 3) printTotalPrice();
 				if(sel2 == 4) sel=0;
 			}
 			if(sel==3) {
@@ -164,6 +216,60 @@ public class ProdMain1 {
 				break;
 			}
 		}
+	}
+	
+	
+	public void printTotalPrice() {
+		int total =0;
+		for(Prod1 prod : prodList) {
+			
+			int prodTotal =0;
+			
+			for(Cart1 cart : cartList) {
+				if(cart.getProdNo()==prod.getProdNo()) {
+					prodTotal+=prod.getPrice()*cart.getCnt();
+				}
+			}
+			System.out.println(prod.getName() + " : "+ prodTotal);
+			total+=prodTotal;
+		}
+		System.out.println(total);
+	}
+	
+	
+	public void printCartList() {
+		System.out.println("카트번호\t상품번호\t수량");
+		for(Cart1 cart : cartList) {
+			String prodName ="";
+			for(Prod1 prod : prodList) {
+				if(prod.getProdNo()==cart.getProdNo()) {
+					prodName = prod.getName();
+					break;
+				}
+			}
+			System.out.println(cart.getCartNo()+"\t"+cart.getProdNo()+"\t"+cart.getCnt());
+		}
+	}
+	
+	
+	public void cartBuy() {
+		printProdList();
+		int prodNo = ScanUtil.nextInt("구매할 상품 번호 : ");
+		int cnt = ScanUtil.nextInt("수량 : ");
+		
+		Cart1 cart = new Cart1();
+		
+		int cartNo = 1;
+		if(cartList.size() != 0) {
+			cartNo = cartList.get(cartList.size()-1).getCartNo()+1;
+		}
+		cart.setCartNo(cartNo);
+		cart.setProdNo(prodNo);
+		cart.setCnt(cnt);
+		
+		cartList.add(cart);
+		
+		writeCartExcel();
 	}
 	
 	public void prodUpdate() {

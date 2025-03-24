@@ -13,7 +13,8 @@ public class Test {
 		
 		
 		System.out.println(answer);
-		
+		int n=2;
+		System.out.println((2*(n-1)+1)%4);
 
 	}
 }

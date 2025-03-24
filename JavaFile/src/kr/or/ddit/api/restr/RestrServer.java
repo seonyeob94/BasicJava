@@ -1,5 +1,8 @@
-package kr.or.ddit.api;
+package kr.or.ddit.api.restr;
 import com.sun.net.httpserver.HttpServer;
+
+import kr.or.ddit.vo.RestrVo;
+
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
 
@@ -9,17 +12,19 @@ import java.net.InetSocketAddress;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
-public class SimpleHttpServer {
+public class RestrServer {
     public static void main(String[] args) throws IOException {
         int port = 38080;
 //        String responseMessage = "{'data' : 123, 'data2' :abc}"; // 기본 응답 메시지
-//        WeatherVo weather = ApiExplorerUtil.getApi();
-//        
-//    
+      
+        
+       
        
         HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
-        server.createContext("/", new RootHandler("{'name':'이선엽', 'age':30}"));
+        server.createContext("/", new RootHandler("이선엽"));
         server.setExecutor(null);
         server.start();
 
@@ -32,13 +37,31 @@ public class SimpleHttpServer {
         public RootHandler(String message) {
             this.message = message;
         }
+        
+        RestrDao restrDao = RestrDao.getInstance();
 
         @Override
         public void handle(HttpExchange exchange) throws IOException {
-            exchange.getResponseHeaders().set("Content-Type", "aplication/json; charset=UTF-8");
+        	String queryString =exchange.getRequestURI().getQuery();
+//        	pageNo=1
+        	String key = queryString.split("=")[0];
+        	String val = queryString.split("=")[1];
+        	
+        	int pageNo = Integer.valueOf(val);
+        	
+        	int startNo = 1 + (pageNo-1)*10;
+        	int endNo = (pageNo)*10;
+        	
+        	List<Object> param = new ArrayList();
+        	param.add(startNo);
+        	param.add(endNo);
+        	
+        	List<RestrVo> list = restrDao.getList(param);
+        	
+        	exchange.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
         	exchange.sendResponseHeaders(200, message.getBytes().length);
             OutputStream os = exchange.getResponseBody();
-            os.write(message.getBytes());
+            os.write(list.toString().getBytes());
             os.close();
         }
     }
