@@ -14,7 +14,7 @@ public class LamdaExample04 {
 			System.out.println(str);
 		}
 		
-		list.forEach(str -> System.err.println(str));
+		list.forEach(str -> System.out.println(str));
 	}
 }
 

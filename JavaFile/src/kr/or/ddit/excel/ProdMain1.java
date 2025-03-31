@@ -233,7 +233,7 @@ public class ProdMain1 {
 			System.out.println(prod.getName() + " : "+ prodTotal);
 			total+=prodTotal;
 		}
-		System.out.println(total);
+		System.out.println("총합 : "+total);
 	}
 	
 	
