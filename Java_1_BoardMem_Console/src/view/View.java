@@ -7,5 +7,6 @@ public enum View {
 	MYPAGE,
 	LIST,
 	UPDATE,
+	DELETE
 
 }

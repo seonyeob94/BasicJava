@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.jbosslog.JBossLog;
 import util.JDBCUtil;
 
 public class MemberDaoImpl implements MemberDao {
@@ -40,24 +41,38 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int join(List<Object> param) {
-		String sql = "INSERT INTO JAVA_MEMBER\r\n"
-				+ "VALUES (?,?,?)";
+		String sql = "INSERT INTO JAVA_MEMBER(MEM_NO, ID, PASS, NAME)\r\n"
+				+ "VALUES((SELECT NVL((MAX(MEM_NO)+1),0) FROM JAVA_MEMBER),?,?,?)";
 		
 		return jdbc.update(sql, param);
 	}
 
 	@Override
 	public List<Map<String, Object>> list() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql ="SELECT *\r\n"
+				+ "FROM JAVA_MEMBER\r\n"
+				+ "WHERE DELYN ='N'";
+		return jdbc.selectList(sql);
 	}
 
 	@Override
 	public int update(List<Object> param) {
 
-		String sql = "";
+		String sql = "UPDATE JAVA_MEMBER\r\n"
+				+ "SET ID=?, \r\n"
+				+ "PASS=?\r\n"
+				+ "WHERE MEM_NO=?";
 		
 		return jdbc.update(sql,param);
+	}
+
+	@Override
+	public int delete(List<Object> param) {
+		String sql ="UPDATE JAVA_MEMBER\r\n"
+				+ "SET DELYN = 'Y'\r\n"
+				+ "WHERE MEM_NO=?"
+				+ "AND DELYN ='N'";
+		return jdbc.update(sql, param);
 	}
 
 }

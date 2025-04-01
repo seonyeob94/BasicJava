@@ -15,4 +15,6 @@ public interface MemberDao {
 	public List<Map<String, Object>> list();
 	
 	public int update(List<Object> param); 
+	
+	public int delete(List<Object> param);
 }

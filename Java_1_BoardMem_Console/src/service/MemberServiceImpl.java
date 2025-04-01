@@ -46,18 +46,27 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<Map<String, Object>> list() {
 		// TODO Auto-generated method stub
-		return null;
+		return memberDao.list();
 	}
 
 	@Override
 	public boolean update(List<Object> param) {
 		
 	   //int 내가마음대로이름 = 멤버다오.업데이트()
-		
+		int upda = memberDao.update(param);
+		if(upda == 0) return false;
 	
 		
-		return false;
+		return true;
+	}
+
+	@Override
+	public boolean delete(List<Object> param) {
 		
+		int del = memberDao.delete(param);
+		if(del ==0) return false;
+
+		return true;
 	}
 
 	

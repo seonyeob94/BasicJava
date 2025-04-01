@@ -15,5 +15,7 @@ public interface MemberService {
 	
 	public boolean update(List<Object> param);
 	
+	public boolean delete(List<Object> param);
+	
 	
 }
